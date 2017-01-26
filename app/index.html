@@ -17,47 +17,106 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    
-  </head>
+
+    <!-- TEST SCRIPT 1 -->
+    <!-- <script>
+        function loadAjaxReponseText(){
+          var xmlHTTPRequest;
+          if (window.XMLHttpRequest){// Validation for Internet Explorer 7 and upo, Firefox, Chrome, etc
+            xmlHTTPRequest=new XMLHttpRequest();
+          }
+          else{// Web browser is Internet Explorer 5 or 6
+            xmlHTTPRequest=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlHTTPRequest.open("GET","AjaxTextResponse.txt",false);
+          xmlHTTPRequest.send();
+          document.getElementById("AjaxResponseTextHere").innerHTML=xmlHTTPRequest.responseText;
+        }
+      </script> -->
+  <!-- END TEST SCRIPT 1 -->
+
+  <!-- TEST SCRIPT 2 -->
+      <!-- <script>
+        function loadAjaxReponseXML(){
+          var xmlHTTPRequest;
+          var txtToBeWritten,record,i;
+
+          if (window.XMLHttpRequest){// Validation for Internet Explorer 7 and upo, Firefox, Chrome, etc
+            xmlHTTPRequest=new XMLHttpRequest();
+          } else {// Web browser is Internet Explorer 5 or 6
+            xmlHTTPRequest=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+
+          xmlHTTPRequest.onreadystatechange=function(){
+            if (xmlHTTPRequest.readyState==4 && xmlHTTPRequest.status==200){
+              xmlDocument=xmlHTTPRequest.responseXML;
+              txtToBeWritten="";
+              records=xmlDocument.getElementsByTagName("title");
+
+              for (i=0;i<records.length;i++){
+                txtToBeWritten = txtToBeWritten + records[i].childNodes[0].nodeValue + "<br>";
+              }
+
+              document.getElementById("AjaxResponseXMLHere").innerHTML=txtToBeWritten;
+            }
+          }
+          xmlHTTPRequest.open("GET","AjaxXMLResponse.xml",true);
+          xmlHTTPRequest.send();
+        }
+      </script> -->
+<!-- END TEST SCRIPT 2 -->
+
+<!-- TEST SCRIPT 3 -->
+      <script>
+      function loadAjaxReponseJSON(){
+        var xmlHTTPRequest;
+        var txtToBeWritten,record,i;
+
+        if (window.XMLHttpRequest){// Validation for Internet Explorer 7 and upo, Firefox, Chrome, etc
+          xmlHTTPRequest=new XMLHttpRequest();
+        }else{// Web browser is Internet Explorer 5 or 6
+          xmlHTTPRequest=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlHTTPRequest.onreadystatechange=function(){
+          if (xmlHTTPRequest.readyState==4 && xmlHTTPRequest.status==200){
+            var jsonResponse = JSON.parse(xmlHTTPRequest.responseText);
+            txtToBeWritten="";
+            for (i=0;i<jsonResponse.records.record.length;i++){
+              txtToBeWritten = txtToBeWritten + jsonResponse.records.record[i].title + "<br>";
+            }
+            document.getElementById("AjaxResponseJSONHere").innerHTML=txtToBeWritten;
+            }
+          }
+        xmlHTTPRequest.open("GET","AjaxJSONResponse.json",true);
+        xmlHTTPRequest.send();
+        }
+      </script>
+<!-- END TEST SCRIPT 3 -->
+
+    </head>
   <body>
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
+
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">Surfing Yo</h3>
-      </div>
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-
-          <h4>Sass</h4>
-          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-        </div>
-      </div>
+      <form id="form1">
+        <br/>
+        <h1>AJAX DEMO: JSON<h1>
+        <h2>
+          Display record titles:
+          <input type="button" id="submit" value="Click Me!" onclick="loadAjaxReponseJSON()"/>
+          <div id="AjaxResponseJSONHere"></div>
+        </h2>
+      </form>
 
       <div class="footer">
         <p>♥ from the Yeoman team</p>
       </div>
     </div>
-    
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -73,7 +132,7 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
@@ -88,7 +147,7 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->

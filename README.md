@@ -1,2 +1,2 @@
-# Surfing-Yo
-> Master Branch of Surfing-Chef's Yeoman based projects
+# WP-Plugin
+> Yeoman scaffold startup for a WordPress plugin
